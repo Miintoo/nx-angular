@@ -1,0 +1,74 @@
+{
+  "name": "test-nx-v2",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "test-nx-v2",
+  "sourceRoot": "apps/test-nx-v2/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/test-nx-v2",
+        "index": "apps/test-nx-v2/src/index.html",
+        "browser": "apps/test-nx-v2/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/test-nx-v2/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/test-nx-v2/src/favicon.ico",
+          "apps/test-nx-v2/src/assets"
+        ],
+        "styles": ["apps/test-nx-v2/src/styles.scss"],
+        "scripts": [],
+        "server": "apps/test-nx-v2/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "apps/test-nx-v2/server.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "test-nx-v2:build:production"
+        },
+        "development": {
+          "buildTarget": "test-nx-v2:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "test-nx-v2:build"
+      }
+    }
+  }
+}
