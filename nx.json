@@ -10,7 +10,10 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/test-setup.[jt]s"
+      "!{projectRoot}/test-setup.[jt]s",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json"
     ],
     "sharedGlobals": []
   },
@@ -19,6 +22,9 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "build-storybook": {
+      "cache": true
     }
   },
   "plugins": [
@@ -52,5 +58,12 @@
       "unitTestRunner": "jest"
     }
   },
-  "nxCloudAccessToken": "NWY1OTdjZjgtYTRiYi00ZWI3LTlmZjItN2Q4NTE5NTE3ODhmfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "NWY1OTdjZjgtYTRiYi00ZWI3LTlmZjItN2Q4NTE5NTE3ODhmfHJlYWQtd3JpdGU=",
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "cacheableOperations": ["build-storybook"]
+      }
+    }
+  }
 }
