@@ -1,0 +1,69 @@
+{
+  "name": "test2-nx-v2",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "test-nx-v2",
+  "sourceRoot": "apps/test2-nx-v2/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/test2-nx-v2",
+        "index": "apps/test2-nx-v2/src/index.html",
+        "browser": "apps/test2-nx-v2/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/test2-nx-v2/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/test2-nx-v2/src/favicon.ico",
+          "apps/test2-nx-v2/src/assets"
+        ],
+        "styles": ["apps/test2-nx-v2/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "test2-nx-v2:build:production"
+        },
+        "development": {
+          "buildTarget": "test2-nx-v2:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "test2-nx-v2:build"
+      }
+    }
+  }
+}
