@@ -25,6 +25,11 @@
     },
     "build-storybook": {
       "cache": true
+    },
+    "@angular-devkit/build-angular:browser": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "plugins": [
@@ -56,6 +61,9 @@
       "linter": "eslint",
       "style": "scss",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "css"
     }
   },
   "nxCloudAccessToken": "NWY1OTdjZjgtYTRiYi00ZWI3LTlmZjItN2Q4NTE5NTE3ODhmfHJlYWQtd3JpdGU=",
